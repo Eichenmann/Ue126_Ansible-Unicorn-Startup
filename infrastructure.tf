@@ -44,16 +44,16 @@ resource "aws_security_group" "sg" {
 }
 
 resource "aws_key_pair" "kp" {
-  key_name   = "ec2 key"
-  public_key = file("/home/fabio/.ssh/ec2_id_rsa.pub")
+  key_name   = "ansible_intro"
+  public_key = file("/home/jake/.ssh/ansible_intro.pub")
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
 resource "aws_instance" "test" {
-  ami             = "ami-065ab11fbd3d0323d"
+  ami             = "ami-0d318f1f104612755"
   instance_type   = "t2.micro"
-  security_groups = [aws_security_group.sg.name]
-  key_name        = aws_key_pair.kp.key_name
+  security_groups = [sg-02b46fe7dc42f573b]
+  key_name        = ansible_intro
 }
 
 output "ec2_ip" {
